@@ -1,24 +1,129 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(num1,num2) {
+  if (num1>num2){
+    return num1;
+ 
+  } else {
+    return num2;
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+
+
+
+function findLongestWord(words) {
+  if (words.length===0){  //words.lenght es como un mnumero
+    return null;
+
+
+
+
+  }
+let palabraMasLarga = words[0]; //"words[0]" hace referencia al primer elemento del array "words".
+//Esto proporciona un punto de partida para comparar las demás palabras y determinar cuál es la más larga
+for (let i=1; i<words.length; i++){
+  if (words[i].length > palabraMasLarga.length){
+    palabraMasLarga = words[i];
+  }
+  return palabraMasLarga;
+}
+
+
+
+
+}
+
+
+
+
+
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
 
 
 
-// Iteration #3.1 Bonus:
-function sum() {}
+function sumNumbers() {
+  let sum=0;
+  for (let i=0; i<numbers.length; i++){
+    sum += numbers[i];
+  }
+  return sum;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// Iteration #3.1 Bonus: //DIFICIL
+/*una comprobación adicional para lanzar un error en
+caso de que se encuentren elementos de tipo 'object' o 'array'.  */
+
+
+
+
+function sum(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+
+
+
+
+  let sum = 0;
+  let tiposNoAdmitidos = ['object', 'array'];
+
+
+
+
+  for (let i = 0; i < arr.length; i++) {
+    let currentElement = arr[i];
+    let currentType = typeof currentElement;
+
+
+
+
+    if (tiposNoAdmitidos.includes(currentType)) {
+      throw new Error('Unsupported data type');
+    }
+
+
+
+
+    /*if (!isNaN(currentElement)) {
+      sum += currentElement;
+    }*/
+  }
+
+
+
+
+  return sum;
+}
 
 
 
@@ -26,18 +131,191 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+
+function averageNumbers(numbers) {
+  if (numbers.length === 0) {
+    return null;
+  }
+
+
+
+
+  let sum = 0;
+
+
+
+
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+
+
+
+
+  return sum / numbers.length;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*Calcular el promedio de una matriz de cadenas
+debe declarar una función llamada AverageWordLength
+debe devolver nulo si recibe una matriz vacía cuando se llama
+debe devolver el promedio de una matriz de un elemento
+debe devolver el promedio de una matriz*/
+
+
+
+
+function averageWordLength(words) {
+  if (words.length === 0) {
+    return null;
+  }
+
+
+
+
+  let totalLength = 0;
+
+
+
+
+  for (let i = 0; i < words.length; i++) {
+    totalLength += words[i].length;
+  }
+
+
+
+
+  return totalLength / words.length;
+}
+
+
 
 
 // Level 2: Array of strings
+/*Calcular el promedio de una matriz de cadenas
+        debe declarar una función llamada AverageWordLength
+        debe devolver nulo si recibe una matriz vacía cuando se llama
+        debe devolver el promedio de una matriz de un elemento
+        debe devolver el promedio de una matriz
+
+
+
+
+*/
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+
+
+
+function averageWordLength(words){
+  if (words.length === 0) {
+    return null;
+  }
+
+
+
+
+  let totalLength = 0;
+
+
+
+
+  for (let i = 0; i < words.length; i++) {
+    if (typeof words[i] === 'string') { /*Esto se hace para asegurarse de que solo se sumen
+    las longitudes de las palabras y no se cuenten otros tipos de elementos. */
+      totalLength += words[i].length;
+    }
+
+
+
+
+  return totalLength / words.length;
+  }
+}
+
+
+
 
 // Bonus - Iteration #4.1
-function avg() {}
+
+
+
+
+
+
+
+
+/*Bonificación: calcule el promedio de una matriz de elementos mixtos
+        debe declarar una función llamada avg
+        debe devolver nulo si recibe una matriz vacía cuando se llama
+        debe devolver el promedio de la matriz*/
+
+
+
+
+function avg(array) {
+  if (array.length === 0) {
+    return null;
+  }
+       
+  let sum = 0;//para almacenar la suma de los números en la matriz
+  let count = 0;//para contar la cantidad de números en la matriz.
+
+
+
+
+  for (let i = 0; i < array.length; i++) {
+    if (typeof array[i] === 'number') {  //Esto se hace para asegurarse de que solo se sumen y cuenten los números de la matriz
+      sum += array[i];  //sum = sum + array[i].
+      count++; // incrementa en 1 el valor de la variable count en cada iteración del bucle
+              //Es equivalente a count = count + 1 o count += 1.
+    }
+  }
+       
+  return sum / count;
+}
+       
+
+
+
 
 // Iteration #5: Unique arrays
+/*función llamada uniquifyArray
+
+
+
+
+    debe devolver nulo si recibe una matriz vacía cuando se llama
+
+
+
+
+    debe devolver la matriz unificada correcta cuando se pasa una matriz de los mismos elementos como argumento
+
+
+
+
+    debe devolver la misma matriz cuando no se repite ningún elemento
+
+
+
+
+    debería devolver la matriz única
+
+
+
+
+ */
 const wordsUnique = [
   'crab',
   'poison',
@@ -52,18 +330,142 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+
+
+
+function uniquifyArray(array) {
+  if (array.length === 0) {
+    return null;
+  }
+
+
+
+
+  let uniquifiedArray = []; //se utilizará para almacenar los elementos únicos
+
+
+
+
+  for (let i = 0; i < array.length; i++) {
+    if (uniquifiedArray.indexOf(array[i]) === -1) {  //verificar si el elemento en el índice i no se encuentra en la matriz
+      uniquifiedArray.push(array[i]);
+    }
+
+
+
+
+    /*uniquifiedArray.indexOf(array[i])
+    busca el índice del elemento array[i]
+     dentro de uniquifiedArray.
+     Si el elemento no se encuentra en uniquifiedArray,
+     indexOf devuelve -1. */
+  }
+
+
+
+
+  return uniquifiedArray;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 // Iteration #6: Find elements
+/*debe declarar una función llamada doesWordExist
+
+
+
+
+ debe devolver nulo si recibe una matriz vacía cuando se llama
+
+
+
+
+debería devolver verdadero si la palabra que estamos buscando es la única en la matriz
+
+
+
+
+debería devolver falso si la palabra que estamos buscando no está en la matriz
+
+
+
+
+debería devolver verdadero si la palabra que estamos buscando está en la matriz */
+
+
+
+
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+
+
+
+function doesWordExist(words, targetWord) {
+  if (words.length === 0) {
+    return null;
+  }
+
+
+
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i] === targetWord) {
+      return true;
+    }
+  }
+
+
+
+
+  return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 // Iteration #7: Count repetition
+/*debe declarar una función llamada cuantas veces
+
+
+
+
+debe devolver 0 (cero) si recibe una matriz vacía cuando se llama
+
+
+
+
+debe devolver 1 (uno) cuando la palabra aparece solo una vez en la matriz
+
+
+
+
+debe devolver 0 (cero) cuando la palabra no aparece en la matriz
+ */
 const wordsCount = [
   'machine',
   'matter',
@@ -78,7 +480,36 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+
+
+
+function howManyTimes(words, targetWord) {
+  if (words.length === 0) {
+    return 0;
+  }
+
+
+
+
+  let count = 0;
+
+
+
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i] === targetWord) {
+      count++;
+    }
+  }
+
+
+
+
+  return count;
+}
+
+
+
 
 
 
@@ -106,7 +537,12 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
+
 function greatestProduct() {}
+
+
+
+
 
 
 
